@@ -1,0 +1,5 @@
+columns:
+  - source: "Name"
+    target: "name"
+    transform:
+      - trim

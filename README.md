@@ -1,5 +1,8 @@
 # csv-tidyimport
 
+![Version](https://img.shields.io/badge/version-0.1.0-2ea44f?style=flat-square)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue?style=flat-square)
+
 YAML-driven CSV/Excel clean-and-transform library.
 
 Turn messy spreadsheets into normalized structured records — reusable inside applications or via CLI.
@@ -38,27 +41,50 @@ flowchart TD
 
 ```
 
+## Installation (from source)
+
+```bash
+# Clone the repository
+
+git clone https://github.com/vr33ni-dev/csv-tidyimport.git
+cd csv-tidyimport
+```
+
+```bash
+# Create and activate virtual environment
+
+python -m venv venv
+source venv/bin/activate        # macOS / Linux
+# venv\Scripts\activate         # Windows
+```
+
+```bash
+# Install the package in editable mode
+
+pip install -e .
+```
+
 ## Usage
 
 The repository contains a minimal working example inside the examples/ folder:
 
-```cmd
+```bash
 examples/
     example_input.csv
     example_rules.yaml
 ```
 
-```cmd
+```bash
 # example_input.csv
+
 Header row
 Name,Email
 John Doe, JOHN@EXAMPLE.COM
 Jane Smith, jane@example.com
 Random comment row
+```
 
-````
-
-```cmd
+```yaml
 # example_rules.yaml
 
 input:
@@ -81,21 +107,29 @@ columns:
 
 ### Run via CLI
 
-Interactively using CLI:
+```bash
+tidyimport examples/example_input.csv \
+  --spec examples/example_rules.yaml \
+  --format json \
+  --output clean.json
+```
 
-```cmd
-python -m cli.main
+Or interactively:
+
+```bash
+tidyimport
 ```
 
 and provide:
 
-```cmd
+```bash
 examples/example_input.csv
 examples/example_rules.yaml
 ```
 
 ### Using the Library directly
 
+```python
 from csv_importer.engine import ImportEngine
 from csv_importer.spec import load_spec
 
@@ -105,15 +139,16 @@ engine = ImportEngine(spec)
 result = engine.run("examples/example_input.csv")
 
 print(result.records)
+```
 
 ## Design Principles
 
-Spec-driven transformation
+- Spec-driven transformation
 
-Clear separation between engine and persistence
+- Clear separation between engine and persistence
 
-Library is DB-agnostic
+- Library is DB-agnostic
 
-CLI handles side effects
+- CLI handles side effects
 
-Structured output via ImportResult
+- Structured output via ImportResult

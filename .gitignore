@@ -5,3 +5,12 @@ __pycache__/
 .DS_Store
 
 *.csv
+
+# packaging artifacts
+*.egg-info/
+
+# editable install metadata (sometimes under src/)
+src/*.egg-info/
+
+# test output
+*_output.json

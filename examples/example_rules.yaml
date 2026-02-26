@@ -5,12 +5,14 @@ input:
 columns:
   - source: "Name"
     target: "name"
+    required: true
     transform:
       - trim
       - titlecase
 
   - source: "Email"
     target: "email"
+    required: true
     transform:
       - trim
       - lowercase
@@ -19,3 +21,5 @@ row_rules:
   drop_if_empty:
     - Name
     - Email
+
+

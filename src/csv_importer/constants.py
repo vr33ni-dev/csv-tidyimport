@@ -1,0 +1,11 @@
+# Dynamic column modes
+
+DYNAMIC_MODE_MAP = "map"
+DYNAMIC_MODE_PIVOT = "pivot"
+DYNAMIC_MODE_YEAR_MONTH_MAP = "year_month_map"
+
+DYNAMIC_COLUMN_MODES = {
+    DYNAMIC_MODE_MAP,
+    DYNAMIC_MODE_PIVOT,
+    DYNAMIC_MODE_YEAR_MONTH_MAP,
+}

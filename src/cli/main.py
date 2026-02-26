@@ -42,10 +42,16 @@ def main():
         spec = load_spec(args.spec)
         engine = ImportEngine(spec)
 
-        result = engine.run(args.input)
+        result = engine.run(args.input) 
 
         if result.errors:
-            print(f"Import completed with {len(result.errors)} errors.")
+            print(f"Import completed with {len(result.errors)} validation errors.")
+            for err in result.errors:
+                print(f"Row {err['row']} - {err['column']}: {err['error']}")
+
+            print("Valid rows exported successfully.")
+        else:
+            print("Import completed successfully.")
 
         if args.format == "csv":
             csv_exporter.export(result.records, args.output)

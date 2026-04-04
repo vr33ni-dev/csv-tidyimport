@@ -266,13 +266,14 @@ def clean_numeric_value(value: Any):
     value = str(value).strip()
 
     try:
-        cleaned = (
-            value
-            .replace("€", "")
-            .replace(".", "")
-            .replace(",", ".")
-            .strip()
-        )
+        cleaned = value.replace("€", "").strip()
+        # European format: comma as decimal separator, dot as thousands separator
+        # e.g. "1.234,56" → "1234.56"
+        if "," in cleaned:
+            cleaned = cleaned.replace(".", "").replace(",", ".")
+        else:
+            # Plain decimal dot format: "300.00" or "1.80" — just strip whitespace
+            cleaned = cleaned.replace(" ", "")
         return float(cleaned)
     except ValueError:
         return value
